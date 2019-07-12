@@ -27,8 +27,9 @@ class GameObject {
     //=== CharacterStats ===
   
 class CharacterStats extends GameObject{
-    constructor(name, stats) {
-        super(name);
+    constructor(stats) {
+        super(stats);
+        this.name = stats.name;
         this.healthPoints= stats.healthPoints;
     }
     takeDamage(){
@@ -39,9 +40,10 @@ class CharacterStats extends GameObject{
  
     //=== Humanoid (Having an appearance or character resembling that of a human.) ===
    
-class Humanoid extends CharacterStats {
-  constructor(name,language,human) {
-    super(name,language);
+class Humanoid extends GameObject {
+  constructor(human) {
+    super(human);
+    this.name = human.name
     this.team = human.team;
     this.weapons = human.weapons;
     this.language = human.language;
