@@ -21,12 +21,12 @@ class Instructor extends Person  {
     demo(subject){
         console.log (`Today we are learning about ${subject}`)
     }
-    grade(subject){
-        console.log (`${Students.name} receives a perfect score on ${subject}`)
+    grade(student, subject){
+        console.log (`${student.name} receives a perfect score on ${subject}`)
     }
 }
 
-class Students extends Person  {
+class Student extends Person  {
     constructor(studentAttr){
         super(studentAttr);
         this.name = studentAttr.name;
@@ -39,51 +39,55 @@ class Students extends Person  {
             console.log(subjects);
         });
     } 
-    PRAssignments(subject){
-        console.log (`${Students.name} has submitted a PR for ${subject}`)
+    PRAssignments(student, subject){
+        console.log (`${student.name} has submitted a PR for ${subject}`)
     };
     sprintChallenge(subject){
-        console.log(`${Students.name} has begun sprint challenge on ${subject}`)
+        console.log(`${this.name} has begun sprint challenge on ${subject}`)
     }
 }
 
 class ProjectManagers extends Person  {
     constructor(pmAttr){
         super(pmAttr);
+        this.name = pmAttr.name;
         this.gradClassName = pmAttr.gradClassName;
         this.favInstructor = pmAttr.favInstructor;
     }
-    standUp(name, channel){
-        console.log(`${name} announces to ${channel}, @channel standy times!​​​​​`)
+    standUp(PM, channel){
+        console.log(`${PM.name} announces to ${channel}, @channel standy times!​​​​​`)
     }
-    debugsCode(name,subject){
-        console.log(`${name} debugs ${Students.name}'s code on ${subject}`)
+    debugsCode(PM,student,subject){
+        console.log(`${PM.name} debugs ${student.name}'s code on ${subject}`)
     }
 
 }
 
+const bob = new Person({
+    name: 'Bob',
+    age: '50 years young',
+    location: 'Alaska'
+})
+
+
 const junkRat = new Instructor({
     name: 'Junk Rat',
-    location: 'Overwatch',
+    location: 'Junkertown',
     age: 23,
     favLanguage: 'CSS',
     specialty: 'Front-end',
     catchPhrase: `*Random Noises`
-  });
-console.log(junkRat);
-junkRat.demo('advanced js');
-junkRat.grade('css') //*************************** */
+});
 
-const jacob = new Students({
+
+
+const jacob = new Student({
     name: 'jacob',
     previousBackground: 'Customer Service Manager',
     className: 'WEBPT8',
     favSubjects: ['js', 'css', 'html']
 })
 
-console.log(jacob);
-jacob.listsSubjects();
-jacob.PRAssignments('english'); //******************** */
 
 const spongeBob = new ProjectManagers({
     name: "SpongeBob SquarePants",
@@ -91,6 +95,19 @@ const spongeBob = new ProjectManagers({
     favInstructor: 'Ms. Puff',
 })
 
-spongeBob.standUp(spongeBob.name, 'webpt8_sponge');
-spongeBob.debugsCode(spongeBob.name, 'css')
 
+console.log(bob);
+bob.speak();
+
+console.log(junkRat);
+junkRat.demo('advanced js');
+junkRat.grade(jacob, 'css');
+
+console.log(jacob);
+jacob.listsSubjects();
+jacob.PRAssignments(jacob,'english'); //******************** */
+
+
+console.log(spongeBob);
+spongeBob.standUp(spongeBob, 'webpt8_sponge');
+spongeBob.debugsCode(spongeBob, jacob, 'css')

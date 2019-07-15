@@ -45,8 +45,12 @@ class Humanoid extends GameObject {
     super(human);
     this.name = human.name
     this.team = human.team;
+    this.healthPoints = human.healthPoints
     this.weapons = human.weapons;
     this.language = human.language;
+  }
+  takeDamage() {
+    return `${this.name} takes damage.`
   }
   greet(){
     return `${this.name} offers a greeting in ${this.language}.`; 
